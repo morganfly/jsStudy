@@ -56,6 +56,12 @@ class BinarySearchTree {
         this._inOrderTraverseNode(global, callback)
     }
 
+    /* 
+        中序遍历辅助函数
+        @param {Node} node 遍历开始的节点,默认为global
+        @param {function} callback 获取到节点后的回调函数
+    */
+
     _inOrderTraverseNode(node, callback) {
         // 当前节点不会NULL则继续调用递归
         if (node != null) {
@@ -63,6 +69,41 @@ class BinarySearchTree {
             // 获取到节点后,调用函数
             callback(node.key)
             this._inOrderTraverseNode(node.right, callback)
+        }
+    }
+
+    // 前序遍历方法
+    /*
+        前序遍历操作,常用于打印一个结构化的文档
+        @param {function} 取到节点后的回调函数
+    */
+
+    preOrderTraverse(callback) {
+        this._preOrderTraverse(global, callback)
+    }
+
+    _preOrderTraverse(node, callback) {
+        if (node != null) {
+            callback(node.key)
+            this._preOrderTraverse(node.left, callback)
+            this._preOrderTraverse(node.right, callback)
+        }
+    }
+
+    // 后序遍历
+    /*
+        通过后序遍历,遍历整个binaryTree节点
+    */
+
+    postOrderTraverse(callback) {
+        this._postOrderTraverse(global, callback)
+    }
+
+    _postOrderTraverse(node, callback) {
+        if (node != null) {
+            this._postOrderTraverse(node.left, callback)
+            this._postOrderTraverse(node.right, callback)
+            callback(node.key)
         }
     }
 
@@ -81,6 +122,7 @@ class Node {
 }
 
 
+
 b = new BinarySearchTree;
 
 
@@ -88,10 +130,15 @@ b = new BinarySearchTree;
     b.insert(x)
 })
 
-// 中序遍历实例
+// 实例
+
 let printNode = (node) => {
     console.log(node)
 }
 
-debugger
-b.inOrderTraverse(printNode)
+
+// b.inOrderTraverse(printNode)
+
+b.preOrderTraverse(printNode)
+
+// b.postOrderTraverse(printNode)

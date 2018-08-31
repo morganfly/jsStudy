@@ -107,6 +107,92 @@ class BinarySearchTree {
         }
     }
 
+
+    //  搜索键值 (在树搜索某个值,如果存在则返回true;不存在,则返回false)
+    /*
+        @param  {Node}          key 形始搜索的节点,默认为global
+        @return {Function}      search函数的辅助函数       
+    */
+
+    search(key) {
+        return _searchNode(node, key)
+    }
+
+    /*
+        search函数的辅助函数
+        @param  {Node}      node 搜索开始的节点,默认为global
+        @param  {Key}       key  要搜索的值
+        @return {Boolean}   打到节点返回true,否则返回false       
+    */
+
+    _searchNode(node, key) {
+        if (node === null) {
+            return false
+        } else if (key < node.key) {
+            _searchNode(node.left, key)
+        } else if (key > node.key) {
+            this._searchNode(node.rigth, key)
+        } else {
+            // 如果该节点值等于传入的值,则返回true
+            return true;
+        }
+    }
+
+
+    // 求最小值 (由二叉搜索树的性质可知,最左侧即为最小值,所以只要取最左侧的值就好)
+    /*
+        @return {Function} min函数的辅助函数
+    */
+
+    min() {
+        return _minNode(global)
+    }
+
+    /*
+        @param {Node}   node查找开始的节点,global 
+    */
+
+    _minNode(node) {
+        if (node === null) {
+            return null
+        }
+        while (node && node.left !== null) {
+            node = node.left;
+        }
+
+        return node.key
+    }
+
+    //  求最大值    (由二叉搜索树的性质可知,最右侧即为最大值,所以只要取最右侧的值就好)
+    /*
+        @return {Function}  max函数的辅助函数
+    */
+
+    max() {
+        return _maxNode(global)
+    }
+
+
+    /*
+        @param     {Node}   node    查找开始的节点,默认为golbal
+        @return    {Key}    节点的值
+    */
+
+    _maxNode(node) {
+        if (node === null) {
+            return null
+        }
+        while (node && node.right !== null) {
+            node = node.rigth
+        }
+
+        return node.key
+    }
+
+
+    //  从树中移除某个键
+
+
 }
 
 

@@ -1,4 +1,4 @@
-class stack {
+class Stack {
     constructor() {
         this.items = []
     }
@@ -10,6 +10,6 @@ class stack {
 }
 
 
-let _stack = new stack();
+let _stack = new Stack();
 console.log(_stack.push(1,3,5))
 console.log(_stack.push(2,4,6))

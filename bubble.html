@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .divFrame {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        background: orange;
+      }
+
+      .div1 {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        z-index: 9;
+        background: skyblue;
+      }
+
+      .div2 {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 0;
+        top: 20px;
+        z-index: 99;
+        background: yellow;
+      }
+
+      .div3:hover{
+        color: red;
+        line-height: 200px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="divFrame">
+      <div class="div1">
+        <div class="div3">111</div>
+      </div>
+      <div class="div2"></div>
+    </div>
+    <script>
+      let div1 = document.getElementsByClassName("div1")[0];
+      let div2 = document.getElementsByClassName("div2")[0];
+      let divFrame = document.getElementsByClassName("divFrame")[0];
+      // div2.onclick = res => {
+      //   console.log(22222);
+      // };
+      div1.onclick = res => {
+        console.log(11111);
+      };
+      // div2.onclick = res => {
+      //   console.log(`0000000`);
+      // };
+    </script>
+  </body>
+</html>

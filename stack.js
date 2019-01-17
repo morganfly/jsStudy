@@ -10,7 +10,7 @@ class Stack {
   }
 
   pop() {
-    this.items.pop();
+    return this.items.pop();
   }
 
   peek() {
@@ -48,7 +48,7 @@ let Stack_symbol = (res => {
     }
 
     pop() {
-      this[_items].pop();
+      return this[_items].pop();
     }
 
     peek() {
@@ -82,11 +82,11 @@ let Stack_weakMap = (res => {
       items.set(this, []);
     }
     push(...ele) {
-      items.get(this).push(...ele);
+      return items.get(this).push(...ele);
     }
 
     pop() {
-      items.get(this).pop();
+      return items.get(this).pop();
     }
 
     peek() {
@@ -157,4 +157,11 @@ let test_stack_weakMap = res => {
   extendClass_weakMap.print();
 };
 
-test_stack_weakMap()
+module.exports = {
+  Stack_symbol,
+  Stack_weakMap,
+  ExtendClass_symbol,
+  ExtendClass_weakMap,
+  test_stack_symbol,
+  test_stack_weakMap
+};

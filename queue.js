@@ -71,7 +71,7 @@ let Queue_weakMap = (() => {
   return Queue_weakMap;
 })();
 
-// 优先队列的实现
+// 优先队列的实现(priorty越大说明优先值越高)
 class PriorityQueue {
   constructor() {
     this.items = [];
@@ -79,25 +79,44 @@ class PriorityQueue {
 
   QueueElement(ele, priority) {
     return {
-      ele : ele,
-      priority : priority
-    }
-   
+      ele: ele,
+      priority: priority
+    };
   }
 
   enqueue(ele, priority) {
     let queueEle = this.QueueElement(ele, priority);
     let added = false;
     for (let i = 0; i < this.items.length; i++) {
-      if (queueEle.priority < this.items[i].priority) {
+      if (queueEle.priority > this.items[i].priority) {
         this.items.splice(i, 0, queueEle);
         added = true;
         break;
       }
-      if (!added) {
-        this.items.push(queueEle);
-      }
     }
+    if (!added) {
+      this.items.push(queueEle);
+    }
+  }
+
+  dequeue() {
+    return items.get(this).pop();
+  }
+
+  front() {
+    return items.get(this)[0];
+  }
+
+  isEmpty() {
+    return items.get(this).length == 0;
+  }
+
+  size() {
+    return items.get(this).length;
+  }
+
+  clear() {
+    items.set(this, []);
   }
 
   print() {
@@ -137,11 +156,10 @@ let test = () => {
   priorityQueue.enqueue(3, 6);
   priorityQueue.enqueue(4, 1);
   priorityQueue.enqueue(5, 33);
+  priorityQueue.enqueue(9, 1);
 
   priorityQueue.print();
 };
-
-test();
 
 module.exports = {
   Queue,

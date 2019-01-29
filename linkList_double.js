@@ -1,8 +1,8 @@
 class Node {
-  constructor(element, next, prev) {
+  constructor(element) {
     this.element = element;
-    this.next = next;
-    this.prev = prev;
+    this.next = null;
+    this.prev = null;
   }
 }
 
@@ -39,11 +39,21 @@ class linkList_double {
       previous,
       node = new Node(element),
       index = 0;
-    if (position >= 0 || position <= this.length) {
+    if (position >= 0 && position <= this.length) {
       if (position === 0) {
-        this.head = node;
-        node.next = current;
-        current.prev = node;
+        if (!this.head) {
+          this.head = node;
+          this.tail = node;
+        } else {
+          this.head = node;
+          node.next = current;
+          current.prev = node;
+        }
+      } else if (position === this.length) {
+        current = this.tail;
+        current.next = node;
+        node.prev = current;
+        this.tail = node;
       } else {
         while (index++ < position) {
           previous = current;
@@ -62,7 +72,36 @@ class linkList_double {
     }
   }
 
-  removeAt(position) {}
+  removeAt(position) {
+    let current = this.head,
+      index,
+      previous;
+    if (position >= 0 && position <= this.length--) {
+      if (position === 0) {
+        previous = this.head;
+        current = current.next;
+        this.head = current.next;
+        current.prev = null;
+      } else if (position === this.length--) {
+        current = this.tail;
+        previous = current.prev;
+        this.tail = previous;
+        previous.next = null;
+      } else {
+        while (index < postion) {
+          previous = current;
+          current = current.current;
+          index++;
+        }
+        current.prev = previous;
+        previous.next = current;
+      }
+      this.length--;
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   remove(element) {}
 
